@@ -3,6 +3,7 @@ import Layout from "../components/Layout";
 import ErrorPage from "../pages/ErrorPage";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
+import ProfilePage from "../pages/ProfilePage";
 import RegisterPage from "../pages/RegisterPage";
 
 
@@ -23,7 +24,12 @@ export const route = createBrowserRouter([
             {
                 path: "/register",
                 element: <RegisterPage />
+            },
+            {
+                path: "/profile",
+                element: <ProfilePage />
             }
+            
             
         ]
         }]
