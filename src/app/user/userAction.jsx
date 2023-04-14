@@ -1,26 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import jwtServiceConfig from "./services/jwtService/jwtServiceConfig";
-import axios from 'axios';
+import jwtServiceConfig from "@/services/jwtService/jwtServiceConfig";
+import userLoginAdapter from "@/adapters/userLoginAdapter"
 
 export const loginUser = createAsyncThunk(
     jwtServiceConfig.signIn,
-    async ({ email, password, }, { reject }) => {
+    async ({ email, password, }, { rejectWithValue }) => {
 
         try {
-            const config = {
-                headers: { 'Content-Type': 'application/json' }
-            }
-
-            const { data } = await axios.post(`http://localhost:3333/api/authenticate`, { email, password }, config);
-            localStorage.setItem('userJwt',data.token)
-            return data
+            const { user } = await signInWithEmailAndPassword(auth, email, password);
+            const info = userLoginAdapter(user)
+            console.log({ user })
+            return info;
         }
         catch (error) {
-            console.log(error);
-            if (error.response) {
-                return reject(error.response);
-            } else {
-                return reject(error.message);
+            if (error) {
+                return rejectWithValue(error.code)
             }
         }
     }
