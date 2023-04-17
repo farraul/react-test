@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import jwtServiceConfig from "@/services/jwtService/jwtServiceConfig";
+import jwtServiceConfig from "@/services/jwtServiceConfig";
 import userLoginAdapter from "@/adapters/userLoginAdapter"
 
 export const loginUser = createAsyncThunk(
